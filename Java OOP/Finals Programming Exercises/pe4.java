@@ -76,10 +76,24 @@ public class pe4 extends JFrame implements ItemListener
       add(bed3);
       add(Box.createHorizontalStrut(60));
       
+      add(Box.createHorizontalStrut(250));
       add(meal);
+      add(Box.createHorizontalStrut(80));
       
+      add(Box.createHorizontalStrut(180));
       add(tot);
       add(calc);
+      
+      loc1.addItemListener(this);
+      loc2.addItemListener(this);
+      loc3.addItemListener(this);
+      
+      bed1.addItemListener(this);
+      bed2.addItemListener(this);
+      bed3.addItemListener(this);
+      
+      meal.addItemListener(this);
+      
    }
    
    @Override
@@ -87,6 +101,7 @@ public class pe4 extends JFrame implements ItemListener
    {
       Object source = e.getSource();
       int selected = e.getStateChange();
+      
       if(source == loc1)
       {
          if(selected == ItemEvent.SELECTED)
@@ -101,7 +116,7 @@ public class pe4 extends JFrame implements ItemListener
          else
             total -= POOLSIDE;
       }
-      else
+      else if(source == loc3)
       {
          if(selected == ItemEvent.SELECTED)
             total += LAKESIDE;
@@ -109,6 +124,34 @@ public class pe4 extends JFrame implements ItemListener
             total -= LAKESIDE;
       }
       
+      if(source == bed1)
+      {
+         if(selected == ItemEvent.SELECTED){}
+         else {}
+      }
+      else if (source == bed2)
+      {
+         if(selected == ItemEvent.SELECTED)
+            total += BED;
+         else
+            total -= BED;
+      }
+      else if(source == bed3)
+      {
+         if(selected == ItemEvent.SELECTED)
+            total += (BED * 2);
+         else
+            total -= (BED * 2);   
+      }
+      
+      if(source == meal)
+      {
+         if(selected == ItemEvent.SELECTED)
+            total += MEAL;
+         else
+            total -= MEAL;
+      }
+            
       calc.setText("$" + total);
       revalidate();
       repaint();
