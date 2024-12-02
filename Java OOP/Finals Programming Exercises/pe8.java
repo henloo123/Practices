@@ -12,14 +12,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class pe8 extends JFrame
+public class pe8 extends JFrame implements ItemListener
 {
    final int HMO = 200;
    final int PPO = 600;
    final int DENTAL = 75;
    final int VISION = 20;
+   int calc = 0;
    
    JLabel l1 = new JLabel();
+   JLabel l2 = new JLabel("Total Cost:");
    
    ButtonGroup iType = new ButtonGroup();
    JCheckBox b1 = new JCheckBox("HMO");
@@ -27,6 +29,8 @@ public class pe8 extends JFrame
    
    JCheckBox b3 = new JCheckBox("Dental Insurance");
    JCheckBox b4 = new JCheckBox("Vision Insurance");
+   
+   JTextField total = new JTextField(4);
    public pe8()
    {
       super("Insurance");
@@ -41,7 +45,72 @@ public class pe8 extends JFrame
       add(b1);
       add(b2);
       
+      add(b3);
+      add(b4);
+      
+      add(l2);
+      add(total);
+      
+      b1.addItemListener(this);
+      b2.addItemListener(this);
+      b3.addItemListener(this);
+      b4.addItemListener(this);
+      
       setVisible(true);
+   }
+   
+   @Override
+   public void itemStateChanged(ItemEvent e)
+   {
+      Object source = e.getSource();
+      int selection = e.getStateChange();
+      
+      if(source == b1)
+      {
+         if(selection == ItemEvent.SELECTED)
+            calc += HMO;
+         else
+            calc -= HMO;
+         total.setText("" + calc);
+      }
+      else if(source == b2)
+      {
+         if(selection == ItemEvent.SELECTED)
+            calc += PPO;
+         else
+            calc -= PPO;
+         total.setText("" + calc);
+      }
+      
+      if(source == b3)
+      {
+         if(selection == ItemEvent.SELECTED)
+         {   
+            calc += DENTAL;
+            total.setText("" + calc);
+         }
+         else
+         {
+            calc -= DENTAL;
+            total.setText("");
+         }
+      }
+      
+      if(source == b4)
+      {
+         if(selection == ItemEvent.SELECTED)
+         {   
+            calc += VISION;
+            total.setText("" + calc);
+         }
+         else
+         {
+            calc -= VISION;
+            total.setText("");
+         }
+      }      
+      
+      
    }
 }
 
