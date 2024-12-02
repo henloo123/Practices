@@ -12,7 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class pe8
+public class pe8 extends JFrame
 {
    final int HMO = 200;
    final int PPO = 600;
@@ -22,14 +22,26 @@ public class pe8
    JLabel l1 = new JLabel();
    
    ButtonGroup iType = new ButtonGroup();
-   JButton b1 = new JButton("HMO");
-   JButton b2 = new JButton("PPO");
+   JCheckBox b1 = new JCheckBox("HMO");
+   JCheckBox b2 = new JCheckBox("PPO");
    
-   JButton b3 = new JButton("Dental Insurance");
-   JButton b4 = new JButton("Vision Insurance");
+   JCheckBox b3 = new JCheckBox("Dental Insurance");
+   JCheckBox b4 = new JCheckBox("Vision Insurance");
    public pe8()
    {
+      super("Insurance");
+      setSize(300, 200);
+      setLocationRelativeTo(null);
+      setDefaultCloseOperation(this.EXIT_ON_CLOSE);
+      setLayout(new FlowLayout());
       
+      iType.add(b1);
+      iType.add(b2);
+      
+      add(b1);
+      add(b2);
+      
+      setVisible(true);
    }
 }
 
