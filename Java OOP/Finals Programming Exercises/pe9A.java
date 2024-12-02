@@ -12,10 +12,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class pe9A extends JFrame
+public class pe9A extends JFrame implements ItemListener
 {
    JLabel l1 = new JLabel("Dormitory Room");
-   JTextArea ta1 = new JTextArea(15, 12);
+   JLabel l2 = new JLabel("Unselected Options");
+   JTextArea ta1 = new JTextArea(6, 12);
+   JTextArea ta2 = new JTextArea(6, 12);
+   
+   String op1s = "- Private Room\n";
+   String op2s = "- Internet Connection\n";
+   String op3s = "- Cable TV Connection\n";
+   String op4s = "- Microwave\n";
+   String op5s = "- Refrigerator\n";
+   
    
    JCheckBox op1 = new JCheckBox("Private Room");
    JCheckBox op2 = new JCheckBox("Internet Connection");
@@ -23,11 +32,14 @@ public class pe9A extends JFrame
    JCheckBox op4 = new JCheckBox("Microwave");
    JCheckBox op5 = new JCheckBox("Refrigerator");
    
+   String remover = "";
+   
+   
    public pe9A()
    {
       super("Dormitory Room");
       setDefaultCloseOperation(this.EXIT_ON_CLOSE);
-      setSize(200, 500);
+      setSize(200, 350);
       setLocationRelativeTo(null);
       setLayout(new FlowLayout());
       
@@ -39,9 +51,114 @@ public class pe9A extends JFrame
       add(op4);
       add(op5);
       
+      add(l2);
+      ta1.append(op1s);
+      ta1.append(op2s);
+      ta1.append(op3s);
+      ta1.append(op4s);
+      ta1.append(op5s);
+      
+      remover = ta1.getText();
+      
+      ta1.setLineWrap(true);
+      ta1.setEditable(false);
       add(ta1);
       
+      op1.addItemListener(this);
+      op2.addItemListener(this);
+      op3.addItemListener(this);
+      op4.addItemListener(this);
+      op5.addItemListener(this);
+      
+
+      
       setVisible(true);
+   }
+   
+   @Override
+   public void itemStateChanged(ItemEvent e)
+   {
+      Object source = e.getSource();
+      int selection = e.getStateChange();
+      int start;
+      int length;
+      
+      if(ta1.getText().contains(remover)) ta1.setText("");
+      else{}
+      
+      
+      l2.setText("Selected Choices");
+      
+      
+      if(source == op1)
+      {
+         if(selection == ItemEvent.SELECTED)
+         {
+            ta1.append(op1s);
+         }
+         else
+         {
+            start = ta1.getText().indexOf(op1s);
+            length = op1s.length();
+            ta1.replaceRange("", start, (start + length));
+         }
+      }
+      
+      if(source == op2)
+      {
+         if(selection == ItemEvent.SELECTED)
+         {
+            ta1.append(op2s);
+         }
+         else
+         {
+            start = ta1.getText().indexOf(op2s);
+            length = op2s.length();
+            ta1.replaceRange("", start, (start + length));
+         }
+      }
+      
+      if(source == op3)
+      {
+         if(selection == ItemEvent.SELECTED)
+         {
+            ta1.append(op3s);
+         }
+         else
+         {
+            start = ta1.getText().indexOf(op3s);
+            length = op3s.length();
+            ta1.replaceRange("", start, (start + length));
+         }
+      }
+      
+      if(source == op4)
+      {
+         if(selection == ItemEvent.SELECTED)
+         {
+            ta1.append(op4s);
+         }
+         else
+         {
+            start = ta1.getText().indexOf(op4s);
+            length = op4s.length();
+            ta1.replaceRange("", start, (start + length));
+         }
+      }
+      
+      if(source == op5)
+      {
+         if(selection == ItemEvent.SELECTED)
+         {
+            ta1.append(op5s);
+         }
+         else
+         {
+            start = ta1.getText().indexOf(op5s);
+            length = op5s.length();
+            ta1.replaceRange("", start, (start + length));
+         }
+      }
    }
 }
 
